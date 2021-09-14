@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!-- saved from url=(0017)https://motif.pw/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>M O T I F</title>
+    </head>
+    
+    <body>
+    <p>Motif Phonic Works</p>
+
+    <!-- update the version number as needed -->
+    <script defer="" src="./M O T I F_files/firebase-app-compat.js.download"></script>
+    <!-- include only the Firebase features as you need -->
+    <!-- <script defer src="/__/firebase/9.0.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.0.1/firebase-performance-compat.js"></script> -->
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+  
+      <style>
+          :root{
+            --intro-anim-t:5s;
+          }
+          
+          body{
+            background-color: black;
+          }
+
+          @keyframes logo-present{
+              from{opacity:0;}
+              50%{opacity:1;}
+              to{opacity:0; visibility:hidden;}
+          }
+          @keyframes actions-present{
+              from{opacity:0;}
+              50%{opacity:0;}
+              to{opacity:1;}
+          }
+          
+          .banner{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width:100%;
+              height:33vh;
+              transform: translate(-50%, -50%);
+              border-top-style: solid;
+              border-bottom-style: solid;
+              color: white; 
+              background-color: black; 
+              overflow: hidden;
+          }
+          .banner-contract{
+              height:0px;
+              border-width:0px;
+              border-color:black;
+          }
+          .banner-contract div{
+              opacity:0;
+          }
+          
+          #actions-main.banner{
+              display:flex;
+              justify-content: space-evenly;
+              align-items: center;
+
+              animation-name: actions-present;
+              animation-duration: var(--intro-anim-t);
+              animation-fill-mode: forwards;
+              transition-duration:0.5s;
+          }
+          #waveform.banner {
+              visibility:hidden;
+              border-style:none;
+          }
+          
+          #actions-main.banner div {
+/*              border-color:red;
+              border-style:solid;*/
+              color:white;
+              transition-property: transform, border-color;
+              transition-duration: 2s;
+          } 
+          
+          #actions-main.banner div:hover{
+              transform: rotateZ(360deg);
+              cursor: pointer;
+          }
+          
+          #logo.banner{
+              display:flex;
+              flex-direction:column;
+              justify-content:space-evenly;
+              
+              animation-name: logo-present;
+              animation-duration: var(--intro-anim-t);
+              animation-fill-mode: forwards;
+          }
+          
+          #logo.banner p{
+            text-align: center;
+            color:white;
+          }
+          
+          #text-motif{
+              font-size:10vh; 
+              font-family: Georgia; 
+              letter-spacing: 3vw;
+              margin:0px;
+              margin-right: -3vw;
+          }
+          #text-motif-sub{
+              font-size:2vh;
+              font-family: Helvetica; 
+              letter-spacing:20px;
+              margin:0px;
+              margin-right: -20px;
+          }
+          
+          .action-button{
+              text-decoration: none; 
+              border:none; 
+              color:white;
+              background-color:black;
+              transition-duration:1s;
+          }
+          .action-button:hover{
+              color:gray;
+          }
+          
+          
+          #clippy{
+              border-color:blue;
+              border-style:solid;
+              background-color:black;
+              width:200px;
+              height:200px;
+              clip-path: polygon(2% 0, 98% 0, 97% 100%, 2% 100%);
+              transition: clip-path 1s;
+          }
+          #clippy:hover{
+              clip-path: polygon(2% 0, 10% 0, 97% 100%, 90% 100%);
+          }
+          
+          </style>
+
+      <div class="banner" id="waveform" style="visibility: visible;">
+        <canvas id="cv_waveform" width="958" height="305"></canvas>
+      </div>
+      
+      <div class="banner banner-contract" id="actions-main">
+        <div>
+          <button class="action-button" id="btn_bonk">
+            <i class="material-icons" style="font-size:30vh; padding:0px; margin:0px;">volume_up</i>
+          </button>
+        </div>
+        
+        <a id="clippy" href="https://motif.pw/page2.html">Hello</a>
+      </div>
+
+      <div class="banner" id="logo">
+        <p id="text-motif">MOTIF</p>
+        <p id="text-motif-sub">PHONIC<br>WORKS<br>...</p>
+      </div>
+
+          
+          <script src="./M O T I F_files/tone"></script>
+              <script>
+                const synth = new Tone.MonoSynth().toDestination();
+                synth.envelope.attack = 2;
+                synth.envelope.decay = 2;
+                synth.envelope.sustain = 1;
+                synth.envelope.release = 10;
+                synth.type = "sawtooth";
+                
+                const wave = new Tone.Waveform();
+                wave.size = 2048;
+                synth.connect(wave);
+                
+                document.getElementById("btn_bonk").onclick = function () {
+                  synth.triggerAttackRelease("a2", "4"); document.getElementById("actions-main").classList.toggle('banner-contract');
+                  document.getElementById("waveform").style.visibility = 'visible';
+                };
+                
+                var cv = document.getElementById("cv_waveform");
+                var ctx = cv.getContext("2d");
+                ctx.canvas.width = window.innerWidth;
+                ctx.canvas.height = window.innerHeight*0.33;
+                var i=0;
+                var ww = 1.0;
+                
+                function drawWave(){
+                  ctx.fillStyle = 'rgba(0,0,0,0.4)';
+                  ctx.strokeStyle = 'white';
+                  ctx.lineWidth = 3;
+                  ctx.fillRect(0,0,ctx.canvas.width, ctx.canvas.height);
+                                    
+                  var da = wave.getValue();
+                  const cc = ctx.canvas.height/2;
+                  var i = (ctx.canvas.width*ww) / da.length;
+                  var x = 0;
+                  var y = cc;
+                  ctx.beginPath();
+                  ctx.moveTo(x,y);
+                  
+                  da.forEach(function(e){
+                    y = e*cc + cc;
+                    ctx.lineTo(x,y);
+                    x = x+i;
+                  });
+                  
+                  ctx.stroke();
+                  requestAnimationFrame(drawWave);
+                  
+                }
+                
+                drawWave();
+          </script> 
+  
+
+</body></html>

@@ -63,3 +63,11 @@ background-color: black;
     margin:0px;
     margin-right: -20px;
 }
+#text-more-sub{
+    font-size:2vh;
+    font-family: Helvetica; 
+    text-transform: uppercase;
+    letter-spacing:20px;
+    margin-right: -20px;
+    margin:0px;
+}

@@ -1,8 +1,12 @@
-@import "style_common.css";
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 :root{
     --intro-anim-t:5s;
-    }
+}
+body{
+    color:white;   
+    background-color: black;
+}
 .banner{
     position: absolute;
     top: 50%;
@@ -22,6 +26,7 @@
 
     text-align: center;
     color:white;
+    text-transform: uppercase;
 }
 
 #logo.banner{
@@ -31,39 +36,23 @@
 }
 @keyframes logo-present{
     from{opacity:0;}
-    50%{opacity:1;}
-    to{opacity:0; visibility:hidden;}
+    to{opacity:1;}
 }
 
-#more.banner{
-    animation-name: more-present;
-    animation-duration: var(--intro-anim-t);
-    animation-fill-mode: forwards;
-}
-@keyframes more-present{
-    from{opacity:0;visibility:hidden;}
-    75%{opacity:0;visibility:hidden;}
-    to{opacity:1; border-color: black;}
-}
 
-#text-motif{
+.banner p{
     font-size:10vh; 
     font-family: Georgia; 
     letter-spacing: 3vw;
     margin:0px;
     margin-right: -3vw;
 }
-#text-motif-sub{
+.banner p.sub{
     font-size:2vh;
     letter-spacing:20px;
     margin:0px;
     margin-right: -20px;
-}
-#text-more-sub{
-    font-size:2vh;
-    letter-spacing:20px;
-    margin-right: -20px;
-    margin:0px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 

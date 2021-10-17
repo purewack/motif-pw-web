@@ -3,9 +3,13 @@
 :root{
     --intro-anim-t:5s;
 }
+html, body {
+    overflow: hidden;
+}
 body{
     color:white;   
     background-color: black;
+    position: relative;
 }
 .banner{
     position: absolute;
@@ -18,9 +22,9 @@ body{
     border-bottom-style: solid;*/
     color: white; 
     background-color: black; 
-    overflow: hidden;
+    overflow: hidden; 
 
-    display:flex;
+    display:flex; 
     flex-direction:column;
     justify-content:space-evenly;
 
